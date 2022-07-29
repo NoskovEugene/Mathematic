@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\Users\Eugene\Desktop\Ромкин калькулятор\ArithmeticGame.exe-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{87A966C7-8609-4212-98DE-1176376314E5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>ArithmeticGame</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>ArithmeticGame</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Arithmetic">
+      <HintPath>lib\Arithmetic.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Prism">
+      <HintPath>lib\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf">
+      <HintPath>lib\Prism.Unity.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf">
+      <HintPath>lib\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>app.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>mainwindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Validators\IMathValidator.cs" />
+    <Compile Include="Validators\MathValidator.cs" />
+    <Compile Include="Validators\Rule.cs" />
+    <Compile Include="Extensions\WindowExtensions.cs" />
+    <Compile Include="Enums\KeysEnum.cs" />
+    <Compile Include="Converter\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converter\EquationConverter.cs" />
+    <Compile Include="Converter\KeyEnumToEffectConverter.cs" />
+    <Compile Include="Converter\StatStatusbarConverter.cs" />
+    <Compile Include="Converter\WinOrLoseColorConverter.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
+    <Compile Include="Calculators\Equation.cs" />
+    <Compile Include="Calculators\EquationController.cs" />
+    <Compile Include="Calculators\TreeCalculator.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="content\delete.png" />
+    <Resource Include="content\enter.png" />
+    <Resource Include="content\fonts\balsamiqsans-bold.ttf" />
+    <Resource Include="content\fonts\balsamiqsans-bolditalic.ttf" />
+    <Resource Include="content\fonts\balsamiqsans-italic.ttf" />
+    <Resource Include="content\fonts\balsamiqsans-regular.ttf" />
+    <Resource Include="content\logo.png" />
+    <Resource Include="content\lose\1.png" />
+    <Resource Include="content\lose\10.png" />
+    <Resource Include="content\lose\11.png" />
+    <Resource Include="content\lose\12.png" />
+    <Resource Include="content\lose\13.png" />
+    <Resource Include="content\lose\14.png" />
+    <Resource Include="content\lose\15.png" />
+    <Resource Include="content\lose\16.png" />
+    <Resource Include="content\lose\17.png" />
+    <Resource Include="content\lose\18.png" />
+    <Resource Include="content\lose\19.png" />
+    <Resource Include="content\lose\2.png" />
+    <Resource Include="content\lose\3.png" />
+    <Resource Include="content\lose\4.png" />
+    <Resource Include="content\lose\5.png" />
+    <Resource Include="content\lose\6.png" />
+    <Resource Include="content\lose\7.png" />
+    <Resource Include="content\lose\8.png" />
+    <Resource Include="content\lose\9.png" />
+    <Resource Include="content\win\1.png" />
+    <Resource Include="content\win\10.png" />
+    <Resource Include="content\win\11.png" />
+    <Resource Include="content\win\12.png" />
+    <Resource Include="content\win\13.png" />
+    <Resource Include="content\win\14.png" />
+    <Resource Include="content\win\15.png" />
+    <Resource Include="content\win\16.png" />
+    <Resource Include="content\win\2.png" />
+    <Resource Include="content\win\3.png" />
+    <Resource Include="content\win\4.png" />
+    <Resource Include="content\win\5.png" />
+    <Resource Include="content\win\6.png" />
+    <Resource Include="content\win\7.png" />
+    <Resource Include="content\win\8.png" />
+    <Resource Include="content\win\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="app.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="mainwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="simple_002520styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

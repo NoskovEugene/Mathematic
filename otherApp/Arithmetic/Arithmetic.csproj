@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\Users\Eugene\Desktop\Arithmetic.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0F71FA8F-0488-4EF4-9B6C-C9547FEE7702}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Arithmetic</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>Arithmetic</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\ListExpression.cs" />
+    <Compile Include="Extensions\TreeElementExtensions.cs" />
+    <Compile Include="Extensions\VariableExtensions.cs" />
+    <Compile Include="Elements\Bracket.cs" />
+    <Compile Include="Elements\ElementTypeEnum.cs" />
+    <Compile Include="Elements\IElementState.cs" />
+    <Compile Include="Elements\OperatorBase.cs" />
+    <Compile Include="Elements\TreeElement.cs" />
+    <Compile Include="Elements\Value.cs" />
+    <Compile Include="Elements\Variable.cs" />
+    <Compile Include="Elements\UnaryOperators\Actions.cs" />
+    <Compile Include="Elements\UnaryOperators\Cosine.cs" />
+    <Compile Include="Elements\UnaryOperators\Sine.cs" />
+    <Compile Include="Elements\UnaryOperators\SquareRoot.cs" />
+    <Compile Include="Elements\UnaryOperators\Tangent.cs" />
+    <Compile Include="Elements\UnaryOperators\UnaryOperator.cs" />
+    <Compile Include="Elements\UnaryOperators\UnaryOperatorsExtensions.cs" />
+    <Compile Include="Elements\Operators\Actions.cs" />
+    <Compile Include="Elements\Operators\Addition.cs" />
+    <Compile Include="Elements\Operators\BinaryOperator.cs" />
+    <Compile Include="Elements\Operators\BinaryOperatorExtensions.cs" />
+    <Compile Include="Elements\Operators\Division.cs" />
+    <Compile Include="Elements\Operators\Exponent.cs" />
+    <Compile Include="Elements\Operators\Multiplication.cs" />
+    <Compile Include="Elements\Operators\OperatorTypeEnum.cs" />
+    <Compile Include="Elements\Operators\Substraction.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

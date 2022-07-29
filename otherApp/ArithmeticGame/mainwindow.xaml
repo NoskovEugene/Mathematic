@@ -1,0 +1,212 @@
+<Window x:Class="ArithmeticGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArithmeticGame"
+        xmlns:viewModels="clr-namespace:ArithmeticGame.ViewModels"
+        xmlns:Converters="clr-namespace:ArithmeticGame.Converter"
+        WindowState="Normal" ResizeMode="NoResize" Height="546" Width="930.5" Icon="/Content/Logo.png"
+        Title="{Binding Title}">
+  <FrameworkElement.DataContext>
+    <viewModels:MainViewModel/>
+  </FrameworkElement.DataContext>
+  <FrameworkElement.Resources>
+    <FontFamily x:Key="Balsamiq">
+      /Content/Fonts/BalsamiqSans-Regular.ttf#Balsamiq Sans
+    </FontFamily>
+    <Converters:StatStatusbarConverter x:Key="StatStatusbarConverter"/>
+    <Converters:EquationConverter x:Key="EquationConverter"/>
+    <Converters:WinOrLoseColorConverter x:Key="WinOrLoseColorConverter"/>
+    <Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    <Converters:KeyEnumToEffectConverter x:Key="KeyEnumToEffectConverter"/>
+    <Style x:Key="FocusVisual">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate>
+            <Rectangle Margin="2" SnapsToDevicePixels="true"
+                       Stroke="{DynamicResource {x:Static JetSystemColors.ControlTextBrushKey}}" StrokeThickness="1"
+                       StrokeDashArray="1 2"/>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <SolidColorBrush x:Key="Application.Background" Color="#FFD3F6DB"/>
+    <SolidColorBrush x:Key="Button.Static.Background" Color="#FFF9FCE1"/>
+    <SolidColorBrush x:Key="Button.Static.Border" Color="#fbd1b7"/>
+    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#fbd1b7"/>
+    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF7C4343"/>
+    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#fbd1b7"/>
+    <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF7C4343"/>
+    <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+    <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+    <SolidColorBrush x:Key="Button.FontColor" Color="#FF7C4343"/>
+    <Style x:Key="NumericTabButton" TargetType="{x:Type Button}">
+      <Setter Property="FrameworkElement.FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+      <Setter Property="Control.Background" Value="{StaticResource Button.Static.Background}"/>
+      <Setter Property="Control.BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+      <Setter Property="Control.Foreground" Value="{StaticResource Button.FontColor}"/>
+      <Setter Property="Control.BorderThickness" Value="2"/>
+      <Setter Property="Control.HorizontalContentAlignment" Value="Center"/>
+      <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
+      <Setter Property="Control.Padding" Value="1"/>
+      <Setter Property="FrameworkElement.Margin" Value="7"/>
+      <Setter Property="Control.FontSize" Value="35"/>
+      <Setter Property="Control.FontFamily" Value="{StaticResource Balsamiq}"/>
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Border x:Name="border" BorderBrush="{TemplateBinding Control.BorderBrush}"
+                    BorderThickness="{TemplateBinding Control.BorderThickness}"
+                    Background="{TemplateBinding Control.Background}" SnapsToDevicePixels="true" IsEnabled="false">
+              <ContentPresenter x:Name="contentPresenter" Focusable="false"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                Margin="{TemplateBinding Control.Padding}" RecognizesAccessKey="true"
+                                SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="Button.IsDefaulted" Value="true">
+                <Setter TargetName="border" Value="{DynamicResource {x:Static JetSystemColors.HighlightBrushKey}}"
+                        Property="Border.BorderBrush"/>
+              </Trigger>
+              <Trigger Property="UIElement.IsMouseOver" Value="true">
+                <Setter TargetName="border" Value="{StaticResource Button.MouseOver.Background}"
+                        Property="Border.Background"/>
+                <Setter TargetName="border" Value="{StaticResource Button.MouseOver.Border}" Property="Border.BorderBrush"/>
+              </Trigger>
+              <Trigger Property="ButtonBase.IsPressed" Value="true">
+                <Setter TargetName="border" Value="{StaticResource Button.Pressed.Background}" Property="Border.Background"/>
+                <Setter TargetName="border" Value="{StaticResource Button.Pressed.Border}" Property="Border.BorderBrush"/>
+              </Trigger>
+              <Trigger Property="UIElement.IsEnabled" Value="false">
+                <Setter TargetName="border" Value="{StaticResource Button.Disabled.Background}"
+                        Property="Border.Background"/>
+                <Setter TargetName="border" Value="{StaticResource Button.Disabled.Border}" Property="Border.BorderBrush"/>
+                <Setter TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"
+                        Property="TextElement.Foreground"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </FrameworkElement.Resources>
+  <Grid Background="{DynamicResource Application.Background}">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="100*"/>
+      <RowDefinition Height="auto"/>
+    </Grid.RowDefinitions>
+    <Menu Grid.Row="0" Background="Transparent">
+      <MenuItem FontFamily="{StaticResource Balsamiq}" FontSize="15" Header="Помощь"/>
+    </Menu>
+    <Grid Row="1" Background="{DynamicResource Application.Background}">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="60*"/>
+        <ColumnDefinition Width="40*"/>
+      </Grid.ColumnDefinitions>
+      <Grid Column="0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="40*"/>
+          <RowDefinition Height="60*"/>
+          <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="30*"/>
+          </Grid.ColumnDefinitions>
+          <Image Grid.Column="0" Margin="25" Source="{Binding LeftImage}"/>
+          <Label Grid.Column="1" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"
+                 FontFamily="{StaticResource Balsamiq}" FontWeight="Bold" Content="{Binding WinOrLoseText}"
+                 Foreground="{Binding WinOrLoseFlag, Converter={StaticResource WinOrLoseColorConverter}}"/>
+          <Image Grid.Column="2" Margin="25" Source="{Binding RightImage}"/>
+        </Grid>
+        <Label Grid.Row="1" HorizontalAlignment="Center" FontSize="40" VerticalAlignment="Center"
+               FontFamily="{StaticResource Balsamiq}" Foreground="#FF53705A">
+          <ContentControl.Content>
+            <MultiBinding Converter="{StaticResource EquationConverter}">
+              <Binding Path="Equation"/>
+              <Binding Path="AnswerString"/>
+            </MultiBinding>
+          </ContentControl.Content>
+        </Label>
+        <Label Grid.Row="2" HorizontalAlignment="Center" FontSize="30" VerticalAlignment="Center"
+               FontFamily="{StaticResource Balsamiq}" Foreground="#FF53705A"
+               Visibility="{Binding ShowTrueAnswer, Converter={StaticResource BoolToVisibilityConverter}}">
+          <ContentControl.Content>
+            <MultiBinding Converter="{StaticResource StatStatusbarConverter}">
+              <Binding Path="TrueAnswerText"/>
+              <Binding Path="TrueAnswer"/>
+            </MultiBinding>
+          </ContentControl.Content>
+        </Label>
+      </Grid>
+      <Grid Background="Transparent" Column="2">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="100*"/>
+          <ColumnDefinition Width="100*"/>
+          <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="25*"/>
+          <RowDefinition Height="25*"/>
+          <RowDefinition Height="25*"/>
+          <RowDefinition Height="25*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="3" Style="{DynamicResource NumericTabButton}" Command="{Binding DeleteClick}">
+          <Image Source="/Content/Delete.png" Margin="19"/>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource NumericTabButton}"
+                Command="{Binding SubmitClick}">
+          <Image Source="/Content/enter.png" Margin="29"/>
+        </Button>
+        <Button x:Name="Zero" Grid.Row="3" Style="{DynamicResource NumericTabButton}" Grid.Column="1"
+                Command="{Binding NumericClick}" CommandParameter="{Binding ElementName=Zero, Path=Content}">0</Button>
+        <Button x:Name="One" Grid.Row="2" Style="{DynamicResource NumericTabButton}"
+                Command="{Binding NumericClick}" CommandParameter="{Binding ElementName=One, Path=Content}">1</Button>
+        <Button x:Name="Two" Grid.Row="2" Grid.Column="1" Style="{DynamicResource NumericTabButton}"
+                Command="{Binding NumericClick}" CommandParameter="{Binding ElementName=Two, Path=Content}">2</Button>
+        <Button x:Name="Three" Grid.Row="2" Grid.Column="2" Style="{DynamicResource NumericTabButton}"
+                Command="{Binding NumericClick}" CommandParameter="{Binding ElementName=Three, Path=Content}">3</Button>
+        <Button x:Name="Four" Grid.Row="1" Style="{DynamicResource NumericTabButton}"
+                Command="{Binding NumericClick}" CommandParameter="{Binding ElementName=Four, Path=Content}">4</Button>
+        <Button x:Name="Five" Grid.Row="1" Grid.Column="1" Style="{DynamicResource NumericTabButton}"
+                Command="{Binding NumericClick}" CommandParameter="{Binding ElementName=Five, Path=Content}">5</Button>
+        <Button x:Name="Six" Grid.Row="1" Grid.Column="3" Style="{DynamicResource NumericTabButton}"
+                Command="{Binding NumericClick}" CommandParameter="{Binding ElementName=Six, Path=Content}">6</Button>
+        <Button x:Name="Seven" Style="{DynamicResource NumericTabButton}" Command="{Binding NumericClick}"
+                CommandParameter="{Binding ElementName=Seven, Path=Content}">7</Button>
+        <Button x:Name="Eight" Grid.Column="1" Style="{DynamicResource NumericTabButton}"
+                Command="{Binding NumericClick}" CommandParameter="{Binding ElementName=Eight, Path=Content}">8</Button>
+        <Button x:Name="Nine" Grid.Column="2" Style="{DynamicResource NumericTabButton}"
+                Command="{Binding NumericClick}" CommandParameter="{Binding ElementName=Nine, Path=Content}">9</Button>
+      </Grid>
+    </Grid>
+    <StatusBar Grid.Row="2" Background="Transparent">
+      <StatusBarItem>
+        <Label FontFamily="{StaticResource Balsamiq}" FontSize="15">
+          <ContentControl.Content>
+            <MultiBinding Converter="{StaticResource StatStatusbarConverter}">
+              <Binding Path="WinStatText"/>
+              <Binding Path="WinStatCount"/>
+            </MultiBinding>
+          </ContentControl.Content>
+        </Label>
+      </StatusBarItem>
+      <StatusBarItem>
+        <Label FontFamily="{StaticResource Balsamiq}" FontSize="15">
+          <ContentControl.Content>
+            <MultiBinding Converter="{StaticResource StatStatusbarConverter}">
+              <Binding Path="LosingStatText"/>
+              <Binding Path="LosingStatCount"/>
+            </MultiBinding>
+          </ContentControl.Content>
+        </Label>
+      </StatusBarItem>
+    </StatusBar>
+  </Grid>
+</Window>
